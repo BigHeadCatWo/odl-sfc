@@ -1,0 +1,6 @@
+org.opendaylight.controller.config.yang.config.sfc_test_consumer.impl
+org.opendaylight.sfc.sfc_test_consumer
+org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.controller.config.sfc.test.consumer.impl.rev140701
+org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.controller.config.sfc.test.consumer.impl.rev140701.modules.module.configuration
+org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.controller.config.sfc.test.consumer.impl.rev140701.modules.module.configuration.sfc.test.consumer.impl
+org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.controller.config.sfc.test.consumer.impl.rev140701.modules.module.state

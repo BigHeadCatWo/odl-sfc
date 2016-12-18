@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bnd-LastModified: 1481973735466
+Build-Jdk: 1.8.0_111
+Built-By: sfc
+Bundle-Description: Open Daylight SDN controller Service Function Chaini
+ ng application
+Bundle-DocURL: https://www.opendaylight.org
+Bundle-License: http://www.eclipse.org/legal/epl-v10.html
+Bundle-ManifestVersion: 2
+Bundle-Name: org.opendaylight.sfc.sfc-network-topology-utils
+Bundle-SymbolicName: org.opendaylight.sfc.network-topology-utils
+Bundle-Vendor: OpenDaylight
+Bundle-Version: 0.2.5.SNAPSHOT
+Created-By: Apache Maven Bundle Plugin
+Tool: Bnd-3.0.0.201509101326
