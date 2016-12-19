@@ -47,7 +47,7 @@ public class SfcServiceFunctionNoneSchedulerAPI extends SfcServiceFunctionSchedu
         if(infos.length<2)
             return sfNameList;
         String rspRequestID=infos[1];
-        String rspInfoServerAddr="127.0.0.1:8000";
+        String rspInfoServerAddr="192.168.1.225:9999";
         String res= httpUtil.sendGet("http://"+rspInfoServerAddr+"/rspget","rspID="+rspRequestID);
         JsonParser jsonParser=new JsonParser();
         JsonElement jsonElement=jsonParser.parse(res);
