@@ -18,17 +18,16 @@ import org.opendaylight.yang.gen.v1.urn.cisco.params.xml.ns.yang.sfc.sfc.rev1407
 import org.opendaylight.yang.gen.v1.urn.cisco.params.xml.ns.yang.sfc.sfp.rev140701.service.function.paths.ServiceFunctionPath;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import java.util.ArrayList;
 import java.util.List;
-
+import java.sql.*;
 /**
  * Created by g on 2016/12/9.
  */
 public class SfcServiceFunctionNoneSchedulerAPI extends SfcServiceFunctionSchedulerAPI {
 
     private static final Logger LOG = LoggerFactory.getLogger(SfcServiceFunctionNoneSchedulerAPI.class);
-
+    static String rspInfoServerAddr="192.168.1.225:9991";
     SfcServiceFunctionNoneSchedulerAPI() {
         super.setSfcServiceFunctionSchedulerType(
                 org.opendaylight.yang.gen.v1.urn.intel.params.xml.ns.yang.sfc.sfst.rev150312.UserDefined.class);
@@ -46,8 +45,39 @@ public class SfcServiceFunctionNoneSchedulerAPI extends SfcServiceFunctionSchedu
         String[] infos=createRenderedPathInput.getName().split("_");
         if(infos.length<2)
             return sfNameList;
+try{
+Connection conn = null;
+String sql;
+String url = "jdbc:mysql://192.168.1.225:3306/nfvorchestrator?user=root&password=123456&useUnicode=true&characterEncoding=UTF8";
+try{
+Class.forName("com.mysql.jdbc.Driver");// 动态加载mysql驱动
+System.out.println("成功加载MySQL驱动程序");
+conn = DriverManager.getConnection(url);
+PreparedStatement statement = null;
+ResultSet rs = null;
+sql="select * from server_info where server_type='rsp_info'";
+statement = conn.prepareStatement(sql);
+rs = statement.executeQuery(sql);
+int rowCount = rs.getRow();
+while(rs.next()) {
+String ip = rs.getString("server_ip");
+String port = rs.getString("server_port");
+rspInfoServerAddr=ip+":"+port;
+System.out.println(rspInfoServerAddr);
+}
+} catch (SQLException e) {
+System.out.println("MySQL操作错误");
+e.printStackTrace();
+} catch (Exception e) {
+e.printStackTrace();
+} finally {
+conn.close();
+}
+}catch (SQLException e) {
+System.out.println("MySQL操作错误");
+e.printStackTrace();
+}
         String rspRequestID=infos[1];
-        String rspInfoServerAddr="192.168.1.225:9999";
         String res= httpUtil.sendGet("http://"+rspInfoServerAddr+"/rspget","rspID="+rspRequestID);
         JsonParser jsonParser=new JsonParser();
         JsonElement jsonElement=jsonParser.parse(res);
